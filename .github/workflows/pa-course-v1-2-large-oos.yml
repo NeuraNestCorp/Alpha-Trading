@@ -13,7 +13,10 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install pandas numpy PyYAML
-      - run: python research/pa_course_v1_2/remote_oos.py
+      - name: Verify transferred frozen bundle
+        run: python research/pa_course_v1_2/diag.py
+      - name: Run large OOS
+        run: python research/pa_course_v1_2/remote_oos.py
       - uses: actions/upload-artifact@v4
         with:
           name: pa-course-v1-2-large-oos-results
