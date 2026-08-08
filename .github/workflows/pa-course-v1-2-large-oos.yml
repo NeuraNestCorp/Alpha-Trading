@@ -15,6 +15,8 @@ jobs:
       - run: pip install pandas numpy PyYAML
       - name: Verify transferred frozen bundle
         run: python research/pa_course_v1_2/diag.py
+      - name: Rebuild exact archive chunk 1
+        run: cat research/pa_course_v1_2/archive_1_parts/part_*.b64 > research/pa_course_v1_2/archive_1.b64
       - name: Run large OOS
         run: python research/pa_course_v1_2/remote_oos.py
       - uses: actions/upload-artifact@v4
