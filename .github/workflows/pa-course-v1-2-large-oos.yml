@@ -1,0 +1,20 @@
+name: PA Course v1.2 Large OOS
+on:
+  push:
+    branches: [pa-course-v1-2-large-oos-20260808]
+  workflow_dispatch:
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install pandas numpy PyYAML
+      - run: python research/pa_course_v1_2/remote_oos.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pa-course-v1-2-large-oos-results
+          path: pa_course_large_oos_runtime/results/
